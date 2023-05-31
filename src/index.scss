@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&display=swap");
+@import "./css-config/mixins.scss";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Cabin", sans-serif;
+}
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 500;
+}
+html {
+    scroll-behavior: smooth;
+}
+// body::before {
+//     content: "";
+//     display: block;
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     height: 100vh;
+//     width: 100%;
+//     z-index: -1;
+//     background-color: rgba(255, 255, 255, 0);
+//     background-image: url('./components/images/back.png');
+//     background-size: cover;
+//     background-repeat: no-repeat;
+//     background-position: center center;
+//   }
+a {
+    text-decoration: none;
+}
+.input-error {
+    color: red;
+    text-transform: capitalize;
+    padding-left: 12px;
+    font-weight: 100;
+    font-size: .9rem;
+}
+.container {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+@include sm {
+    .container{
+        width: 570px;
+    }
+}
+@include md {
+    .container{
+        width: 760px;
+    }
+}
+@include lg {
+    .container{
+        width: 970px;
+    }
+}
+@include xl {
+    .container{
+        width: 1180px;
+    }
+}
+@include xxl {
+    .container{
+        width: 1340px;
+    }
+}

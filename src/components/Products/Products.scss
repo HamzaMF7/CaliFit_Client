@@ -1,0 +1,78 @@
+@import "../../css-config/mixins.scss";
+@import "../../css-config/variables.scss";
+
+.sec-heading {
+    // color: #FF1E00;
+    // position: relative;
+    // width: fit-content;
+    // margin: 0 auto;
+    // font-size: 18px;
+    // font-weight: 500;
+    // text-transform: uppercase;
+    // @include md {
+    //     margin-bottom: 35px;
+    //     font-size: 24px;
+    // }
+    // &::before {
+    //     content: "";
+    //     position: absolute;
+    //     top: 50%;
+    //     transform: translateY(-50%);
+    //     left: -40px;
+    //     width: 30px;
+    //     height: 1px;
+    //     background-color: #59CE8F;
+    //     @include md {
+    //         left: -80px;
+    //         width: 70px;
+    //     }
+    // }
+    // &::after {
+    //     content: "";
+    //     position: absolute;
+    //     top: 50%;
+    //     transform: translateY(-50%);
+    //     right: -40px;
+    //     width: 30px;
+    //     height: 1px;
+    //     background-color: #59CE8F;
+    //     @include md {
+    //         right: -80px;
+    //         width: 70px;
+    //     }
+    // }
+    text-align: center;
+    text-transform: capitalize;
+    margin: 50px 0;
+    @include md {
+        margin: 100px 0;
+        
+    }
+    h2 {
+        color: $white;
+        font-size: 40px;
+        @include md {
+            font-size: 80px;
+        }
+    }
+    p {
+        font-size: 15px;
+        color: rgba(0, 0, 0, 0.874);
+        transform: scale(1.9,1);
+        @include md {
+            margin: 21px 0 0;
+            font-size: 30px;
+        }
+    }
+}
+.products-container {
+    margin: 50px 0;
+    @include md {
+        margin: 75px 0;
+    }
+    .products {
+        display: grid;
+        grid-template-columns: repeat(auto-fill , minmax(300px , 1fr));
+        gap: 10px;
+    }
+}

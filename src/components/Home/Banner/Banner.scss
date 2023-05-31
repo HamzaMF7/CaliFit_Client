@@ -1,0 +1,124 @@
+@import "../../../css-config/mixins.scss";
+@import "../../../css-config/variables.scss";
+
+*{
+    font-family: $Roboto-fontFamily;
+}
+.hero-banner {
+    position: relative;
+    background: url("../../../images/back.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center 0;
+    height: calc(100vh - 80px);
+    @include md {
+        // height: calc(100vh - 80px);
+    }
+    &::before{
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgb(0,0,0);
+        background: linear-gradient(90deg, rgba(0,0,0,0.6139705882352942) 0%, rgba(255,255,255,0) 60%);
+    }
+    .content {
+        height: 100%;
+        position: relative;
+        // max-width: calc(100% - 20px);
+        // margin: 0 auto;
+        // position: relative;
+        
+        @include md {
+            // flex-direction: row;
+            // max-width: 1200px;
+        }
+        // .banner-img {
+        //     position: relative;
+        //     z-index: 9;
+        //     width: 200px;
+        //     margin-bottom: 20px;
+        //     @include md {
+        //         width: 500px;
+        //         margin-right: 60px;
+        //         margin-top: 50px;
+        //         margin-bottom: 0;
+        //     }
+        //     @include xxl {
+        //         width: 600px;
+        //         margin-right: 0;
+        //         margin-top: 0;
+        //     }
+        // }
+        .text-content {
+            color: white;
+            left: 0;
+            position: absolute;
+            width: fit-content;
+            top: 50%;
+            transform: translateY(-40%);
+            // &::after{
+            //     content: "";
+            //     position: absolute;
+            //     background: rgba(30, 30, 30, 0.8);
+            //     -webkit-backdrop-filter: blur(10px);
+            //     backdrop-filter: blur(10px);
+            //     width: calc(100% + 100px);
+            //     height: calc(100% + 50px);
+            //     z-index: -1;
+            //     top: 0;
+            //     left: -104px;
+            // }
+            span {
+                color: $green;
+            }
+            @include md {
+                // position: absolute;
+                // left: 50px;
+                // top: 50%;
+                // transform: translateY(-50%);
+            }
+            @include xxl {
+                // left: 0;
+            }
+            h1 {
+                font-style: italic;
+                font-size: 70px;
+                font-weight: 500;
+                letter-spacing: -1;
+                line-height: 1 ; 
+                text-transform: uppercase;
+                color: white;
+                width: 765px;
+                margin-bottom: 70px;
+                @media only screen and (max-width: 768px) {
+                    font-size: 50px;
+                    width: 450px;
+                }
+                @media only screen and (max-width: 576px) {
+                    font-size: 45px;
+                    width: 100%;
+                }
+            }
+                .gearUp {
+                    text-transform: capitalize;
+                    font-size: $D-fs;
+                    font-weight: 400;
+                    width: 150px ;
+                    height: 50px;
+                    transition: all ease 0.3s;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border : 1px solid rgba(255, 255, 255, 0.497) ;
+                    cursor: pointer;
+                    color: $white;
+                    // background-color: #FF1E00;
+                    &:hover {
+                        opacity: 0.6;
+                    }
+                }
+            
+        }
+    }
+}

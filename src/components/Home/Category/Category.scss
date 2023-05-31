@@ -1,0 +1,61 @@
+@import "../../../css-config/mixins.scss";
+.shop-by-category {
+    margin: 25px 0;
+    @include md {
+        margin: 50px 0;
+    }
+    .categories {
+        display: flex;
+        flex-flow: wrap;
+        justify-content: space-between;
+        @media only screen and (max-width: 768px) {
+            gap: 10px 0;   
+        }
+        .category {
+            position: relative;
+            background-color: black;
+            width: calc(50% - 5px);
+            cursor: pointer;
+            overflow: hidden;
+            &::before{
+                content: "Lorem";
+                position: absolute;
+                width: fit-content;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50% , -50%);
+                color: rgba(255, 255, 255, 0.695);
+                font-size: 40px;
+                z-index: 10;
+                @media only screen and (max-width: 576px) {
+                    font-size: 25px;   
+                }
+            }
+            &:nth-child(1):before{
+                content: attr(data-cat-type);
+            }
+            &:nth-child(2):before{
+                content: attr(data-cat-type);
+            }
+            &:nth-child(3):before{
+                content: attr(data-cat-type);
+            }
+            &:nth-child(4):before{
+                content: attr(data-cat-type);
+            }
+            @include md {
+                width: calc(25% - 10px);
+            }
+            img {
+                width: 100%;
+                display: block;
+                transition: all ease 0.3s;
+            }
+            &:hover {
+                img {
+                    transform: scale(1.2);
+                }
+            }
+        }
+    }
+}
