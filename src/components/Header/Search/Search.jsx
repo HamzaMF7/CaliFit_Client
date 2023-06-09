@@ -55,13 +55,8 @@ const Search = ({ setSearchModal }) => {
                         >
                             <div className="image-container">
                                 <img
-                                    // src={
-                                    //     process.env
-                                    //         .REACT_APP_STRIPE_APP_DEV_URL +
-                                    //     item.image.products[0]
-                                    //         .url
-                                    // }
-
+                                src={"http://127.0.0.1:8000/storage/" + item.image_url}
+                                alt="productImage"
                                 />
                             </div>
                             <div className="prod-details">

@@ -11,8 +11,6 @@
     z-index: 99;
     color: $white;
     background: $black ;
-    // backdrop-filter: blur(10px);
-    // background-color: transparent;
     .header-content {
         display: flex;
         justify-content: space-between;
@@ -30,30 +28,82 @@
 
     }
     .left {
+        position: relative;
         list-style-type: none;
         display: flex;
         gap: 25px;
         @media only screen and (max-width: 768px) {
+            position: static;
             gap: 15px;
         }
         @media only screen and (max-width: 576px) {
+            position: relative;
             width: 100%;
             justify-content: center;
             padding-bottom: 10px;
          }
         
-        li {
+        & > li {
             font-size: $D-fs;
             text-transform: uppercase;
             cursor: pointer;
-            &:hover {
-                opacity: 0.6;
-            }
+            // &:hover {
+            //     opacity: 0.6;
+            // }
             a{
                 color: $white;
             }
             @media only screen and (max-width: 768px) {
                 font-size: $M-fs;
+            }
+            .showCategories {
+                opacity: 1 !important;
+                transform: translateY(0) !important;
+            }
+            .categories {
+                position: absolute;
+                background: rgba(30,30,30,.8);
+                backdrop-filter: blur(10px);
+                width: 100%;
+                left: 154px;
+                border-bottom: 3px solid var(--main-color);
+                top: 51px;
+                transition: top 0.3s, opacity 0.3s;
+                border-bottom: 2px solid $white;
+                opacity: 0;
+                transform: translateY(-275px);
+                @media only screen and (max-width: 768px){    
+                    left: 0;
+                    top: 49px;
+                }
+                @media only screen and (max-width: 576px){
+                    width: calc(100% + 30px);
+                    left: -15px;
+                    top: 32px;
+                }
+                ul > .category {
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                gap: 10px;
+                &:not(:last-of-type){
+                    margin-bottom: 7px;
+                }
+                    img{
+                        width: 70px;
+                        // height: 50px;
+                    }
+                    p {
+                    padding: 9px 0;
+                    flex: 1;
+                    border-bottom: 1px solid #ffffff38;
+                    transition: .3s;
+                    &:hover {
+                        padding-left: 5px;
+                    }
+                    }
+                
+                }
             }
 
         }

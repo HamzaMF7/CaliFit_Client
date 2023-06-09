@@ -15,8 +15,8 @@ const Category = () => {
         navigate(`/category/${id_category}`);
     }
     return (
-        <div className="shop-by-category">
-            <div className="categories">
+        <div id="categories" className="shop-by-category">
+            <div  className="categories">
 
                 <div id="2" className="category" data-cat-type="Pull" onClick={handleClick} >
                     <img src={cat1} alt="cat1" />

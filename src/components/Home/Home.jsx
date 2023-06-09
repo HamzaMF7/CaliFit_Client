@@ -29,7 +29,7 @@ const Home = () => {
               <div className="content" />
             </Spin>
           ) : productsStatus === "SUCCEEDED" ? (
-            <Products headingText="Popular Products" products={products} />
+            <Products headingText="All Products" products={products} />
           ) : null}
         </div>
       </div>

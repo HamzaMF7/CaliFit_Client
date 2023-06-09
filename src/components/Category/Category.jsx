@@ -3,21 +3,25 @@ import "./Category.scss";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Spin } from "antd";
-import { getProductsByCategory } from "../../app/reduxSlice/ProductSlice";
+import {
+  getProducts,
+  getProductsByCategory,
+} from "../../app/reduxSlice/ProductSlice";
 import Products from "../Products/Products";
 
 const Category = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { filteredProducts } = useSelector(
-    (state) => state.product
-  );
+  const { filteredProducts, products } = useSelector((state) => state.product);
+
 
   useEffect(() => {
-    dispatch(getProductsByCategory(id));
+    if (products.length <= 0) {
+      dispatch(getProducts()).then(() => dispatch(getProductsByCategory(id)));
+    } else dispatch(getProductsByCategory(id));
   }, [dispatch, id]);
 
-  if (!filteredProducts) {
+  if (filteredProducts.length <=0) {
     return (
       <Spin tip="Loading..." size="large">
         <div className="content"></div>
@@ -27,10 +31,10 @@ const Category = () => {
 
   return (
     <div className="category-main-content">
-        <div className="category-title">
-          <h2>{filteredProducts[0]?.category} Products</h2>
-          <p>{filteredProducts[0]?.category} Products</p>
-        </div>
+      <div className="category-title">
+        {/* <h2>{filteredProducts[0]?.category} Products</h2> */}
+        <p>{filteredProducts[0]?.category} Products</p>
+      </div>
       <div className="container">
         <Products innerPage={true} products={filteredProducts} />
       </div>

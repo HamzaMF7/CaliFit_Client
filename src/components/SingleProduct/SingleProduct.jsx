@@ -12,23 +12,34 @@ import {
 import {TbCircleFilled} from "react-icons/tb"
 import "./SingleProduct.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { getSingleProduct } from "../../app/reduxSlice/ProductSlice";
+import { getProducts, getSingleProduct } from "../../app/reduxSlice/ProductSlice";
 import { addToCart } from "../../app/reduxSlice/CartSlice";
+import { Spin } from "antd";
 
 const SingleProduct = () => {
   const { id } = useParams();
   console.log(id);
   const dispatch = useDispatch();
-  const { singleProduct } = useSelector((state) => state.product);
+  const { singleProduct , products } = useSelector((state) => state.product);
 
   useEffect(() => {
-    dispatch(getSingleProduct(id));
+    if (products.length <= 0) {
+      dispatch(getProducts()).then(() => dispatch(getSingleProduct(id)));
+    } else dispatch(getSingleProduct(id));
+    
   }, [id]);
 
   useEffect(() => {
     console.log(singleProduct);
   }, [singleProduct]);
-
+  
+  if (singleProduct.length <=0) {
+    return (
+      <Spin tip="Loading..." size="large">
+        <div className="content"></div>
+      </Spin>
+    );
+  }
 
 
   return (
