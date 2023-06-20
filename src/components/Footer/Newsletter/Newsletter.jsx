@@ -54,15 +54,15 @@ const Newsletter = () => {
           <div className="image">
             <img src={img2} alt="" />
           </div>
-          <p>Build muscle, increase strength and flexibility and burn fat.</p>
+            <p>
+              Save time and money: no travel to the gym and no monthly gym fees.
+            </p>
         </div>
         <div className="icon-box">
           <div className="image">
             <img src={img3} alt="" />
           </div>
-            <p>
-              Save time and money: no travel to the gym and no monthly gym fees.
-            </p>
+          <p>Build muscle, increase strength and flexibility and burn fat.</p>
         </div>
         <div className="icon-box">
           <div className="image">

@@ -16,6 +16,7 @@ import { Alert, Space } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
+import { createCustomer, resetCustomer } from "../../app/reduxSlice/CustomerSlice";
 
 const checkoutSchema = yup.object().shape({
   firstName: yup.string().required("required"),
@@ -39,6 +40,9 @@ const Checkout = () => {
   const { shipping, order, isSuccess, isLoading } = useSelector(
     (state) => state.checkOut
   );
+  const { customer , Success } = useSelector(
+    (state) => state.customer
+  );
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [activeStep, setActiveStep] = useState(0);
@@ -60,6 +64,9 @@ const Checkout = () => {
     if (buttonRef.current.innerText === "PLACE ORDER") {
       try {
         dispatch(createOrder(order));
+        //create customer 
+        dispatch(createCustomer(customer));
+
       } catch (error) {
         console.error("Error creating order:", error);
       }
@@ -69,12 +76,20 @@ const Checkout = () => {
 //  reset to initialeState of order when location change
   const location = useLocation();
   useEffect(() => {
-    if (isSuccess) dispatch(resetState());
+    if (isSuccess){
+      dispatch(resetState());
+      //reset the state of customerSlice
+      // dispatch(resetCustomer());
+    } 
   }, [location]);
 
   useEffect(() => {
-    console.log(isSuccess);
-  }, []);
+    console.log(order); 
+    console.log(customer); 
+  });
+
+
+
 
   return (
     <Box width="80%" m="100px auto">

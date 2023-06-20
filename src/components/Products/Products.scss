@@ -45,7 +45,7 @@
     width: fit-content;
     text-align: center;
     text-transform: capitalize;
-    margin: 50px auto;
+    margin: 100px auto;
     @include md {
         margin: 100px auto;
         
@@ -70,6 +70,9 @@
             
             font-size: 58px;
             font-weight: 900;
+        }
+        @media only screen and (max-width: 576px){
+            font-size: 40px;
         }
     }
 }

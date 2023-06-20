@@ -35,7 +35,7 @@
         font-size: 30px;
         text-align: center;
         text-transform: capitalize;
-        margin: 50px 0;
+        margin: 100px 0;
         @include md {
             font-size: 60px;
         }
@@ -46,6 +46,9 @@
                @include md {
                 margin: 21px 0 0;
                 font-size: 60px;
+            }
+            @media only screen and (max-width: 576px){
+                font-size: 40px;
             }
           }
           

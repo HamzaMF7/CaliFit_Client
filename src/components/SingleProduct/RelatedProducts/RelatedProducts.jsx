@@ -1,17 +1,35 @@
-import React from "react";
-import useFetch from "../../../hooks/useFetch";
-import Products from "../../Products/Products";
+import React, { useEffect } from "react";
+// import useFetch from "../../../hooks/useFetch";
+// import Products from "../../Products/Products";
+import { useDispatch, useSelector } from "react-redux";
+import { getRelatedProducts } from "../../../app/reduxSlice/ProductSlice";
+import Product from "../../Products/Product/Product";
+import "./RelatedProducts.scss"
 
-const RelatedProducts = ({ categoryId, productId }) => {
-    const { data } = useFetch(
-        `/api/products?populate=*&filters[id][$ne]=${productId}&filters[categories][id]=${categoryId}&pagination[start]=0&pagination[limit]=4`
-    );
+const RelatedProducts = ({ productId }) => {
+  const dispatch = useDispatch();
+  const { relatedProducts, products } = useSelector((state) => state.product);
 
-    return (
-        <div className="related-products">
-            <Products headingText="Related Products" products={data} />
-        </div>
-    );
+  useEffect(() => {
+    dispatch(getRelatedProducts(productId));
+  }, [productId]);
+
+  useEffect(() => {
+    console.log("related products : ", relatedProducts);
+  }, [relatedProducts]);
+
+  return (
+    <div className="related-products">
+      <div className="sec-heading">
+        <p>Related Products</p>
+      </div>
+      <div className="products-scroll">
+        {relatedProducts.map((product) => (
+          <Product key={product.id} id={product.id} data={product} />
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default RelatedProducts;
