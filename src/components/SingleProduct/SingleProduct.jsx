@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import RelatedProducts from "./RelatedProducts/RelatedProducts";
 import {
@@ -18,12 +18,24 @@ import {
 } from "../../app/reduxSlice/ProductSlice";
 import { addToCart } from "../../app/reduxSlice/CartSlice";
 import { Spin } from "antd";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 const SingleProduct = () => {
   const { id } = useParams();
-  console.log(id);
+  const imagesSlider = useRef(null);
+  const arrowUp = useRef();
+  const arrowDown = useRef(null);
+  const [bigImageIndex, setBigImageIndex] = useState(0);
+  const [breakPoint , setBreakPoint] = useState(window.matchMedia("(max-width: 992px)").matches);
+
   const dispatch = useDispatch();
   const { singleProduct, products } = useSelector((state) => state.product);
+
+  const images = singleProduct[0]?.image_url;
+
+  useEffect(() => {
+    console.log("break point : ",breakPoint);
+  }, [breakPoint]);
 
   useEffect(() => {
     if (products.length <= 0) {
@@ -38,18 +50,108 @@ const SingleProduct = () => {
       </Spin>
     );
   }
+  const handleScroll = () => {
+    // for desktop
+    const scrollTop = imagesSlider.current.scrollTop;
+    const scrollBottom = imagesSlider.current.scrollHeight - scrollTop;
+    // for mobile
+    const scrollLeft = imagesSlider.current.scrollLeft;
+    const scrollRight =
+      imagesSlider.current.scrollWidth -
+      imagesSlider.current.clientWidth -
+      scrollLeft;
+
+    if (scrollTop >= 70 || scrollLeft >= 70) {
+      arrowUp.current.style.display = "block";
+    } else {
+      arrowUp.current.style.display = "none";
+    }
+    if (scrollBottom >= 680 || scrollRight >= 70) {
+      arrowDown.current.style.display = "block";
+    } else {
+      arrowDown.current.style.display = "none";
+    }
+  };
+  const scrollToTop = () => {
+    imagesSlider.current.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+  const scrollToBottom = () => {
+    imagesSlider.current.scrollTo({
+      top: 600,
+      behavior: "smooth",
+    });
+  };
+  const scrollToLeft = () => {
+    console.log("clicked");
+    imagesSlider.current.scrollTo({
+      left: 0,
+      behavior: "smooth",
+    });
+  };
+  const scrollToRight = () => {
+    console.log("clicked");
+    imagesSlider.current.scrollTo({
+      left: 540,
+      behavior: "smooth",
+    });
+  };
+ 
+  const handleViewportChange = (event) => {
+    setBreakPoint(event.matches);
+  };
+  const mediaQuery = window.matchMedia("(max-width: 992px)");
+  mediaQuery.addEventListener("change", handleViewportChange);
+
+
+
+  const handelTab = (index) => {
+    setBigImageIndex(index);
+  };
 
   return (
     <div className="single-product-main-content">
-      <div className="layout">
+      <div className="layout container">
         <div className="single-product-page">
           <div className="left">
-            <img
-              src={
-                "http://127.0.0.1:8000/storage/" + singleProduct[0]?.image_url
-              }
-              alt="product"
-            />
+            <div className="images-slider">
+              <div
+                ref={arrowUp}
+                className="arrow up"
+                onClick={breakPoint ? scrollToLeft : scrollToTop}
+              >
+                <IoIosArrowUp />
+              </div>
+              <div
+                ref={imagesSlider}
+                className="seconds-images"
+                onScroll={handleScroll}
+              >
+                {images?.map((image, index) => (
+                  <img
+                    key={index}
+                    src={"http://127.0.0.1:8000/storage/" + image}
+                    alt="product"
+                    onClick={() => handelTab(index)}
+                  ></img>
+                ))}
+              </div>
+              <div
+                ref={arrowDown}
+                className="arrow down"
+                onClick={breakPoint ? scrollToRight : scrollToBottom}
+              >
+                <IoIosArrowDown />
+              </div>
+            </div>
+            <div className="main-image">
+              <img
+                src={"http://127.0.0.1:8000/storage/" + images[bigImageIndex]}
+                alt="product"
+              />
+            </div>
           </div>
           <div className="right">
             <span className="name">{singleProduct[0]?.title}</span>
@@ -104,9 +206,7 @@ const SingleProduct = () => {
             </div>
           </div>
         </div>
-        <RelatedProducts
-            productId={id}
-          />
+        <RelatedProducts productId={id} />
       </div>
     </div>
   );

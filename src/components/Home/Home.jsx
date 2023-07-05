@@ -14,6 +14,7 @@ const Home = () => {
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
+    console.log(products);
 
   // console.log(products);
   // console.log(productsStatus);

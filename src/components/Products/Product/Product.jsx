@@ -26,7 +26,7 @@ const Product = ({ data, id }) => {
       <div className="thumbnail">
       <img
         
-          src= {"http://127.0.0.1:8000/storage/" + data.image_url}
+          src= {"http://127.0.0.1:8000/storage/" + data.image_url[0]}
           alt="image"
           onClick={() => navigate("/product/" + id)}
         />
