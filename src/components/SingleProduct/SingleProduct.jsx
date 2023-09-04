@@ -1,6 +1,8 @@
-import { useEffect, useReducer, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import RelatedProducts from "./RelatedProducts/RelatedProducts";
+import { Spin } from "antd";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import {
   FaFacebookF,
   FaTwitter,
@@ -11,22 +13,22 @@ import {
 } from "react-icons/fa";
 import { TbCircleFilled } from "react-icons/tb";
 import "./SingleProduct.scss";
-import { useDispatch, useSelector } from "react-redux";
+import RelatedProducts from "./RelatedProducts/RelatedProducts";
 import {
   getProducts,
   getSingleProduct,
 } from "../../app/reduxSlice/ProductSlice";
 import { addToCart } from "../../app/reduxSlice/CartSlice";
-import { Spin } from "antd";
-import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 const SingleProduct = () => {
   const { id } = useParams();
   const imagesSlider = useRef(null);
-  const arrowUp = useRef();
+  const arrowUp = useRef(null);
   const arrowDown = useRef(null);
   const [bigImageIndex, setBigImageIndex] = useState(0);
-  const [breakPoint , setBreakPoint] = useState(window.matchMedia("(max-width: 992px)").matches);
+  const [breakPoint, setBreakPoint] = useState(
+    window.matchMedia("(max-width: 992px)").matches
+  );
 
   const dispatch = useDispatch();
   const { singleProduct, products } = useSelector((state) => state.product);
@@ -34,26 +36,45 @@ const SingleProduct = () => {
   const images = singleProduct[0]?.image_url;
 
   useEffect(() => {
-    console.log("break point : ",breakPoint);
-  }, [breakPoint]);
+    const mediaQuery = window.matchMedia("(max-width: 992px)");
+    const handleViewportChange = (event) => {
+      setBreakPoint(event.matches);
+    };
+
+    mediaQuery.addEventListener("change", handleViewportChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleViewportChange);
+    };
+  }, []);
 
   useEffect(() => {
     if (products.length <= 0) {
       dispatch(getProducts()).then(() => dispatch(getSingleProduct(id)));
-    } else dispatch(getSingleProduct(id));
-  }, [id]);
+    } else {
+      dispatch(getSingleProduct(id));
+    }
+  }, [dispatch, id, products.length]);
 
-  if (singleProduct.length <= 0) {
-    return (
-      <Spin tip="Loading..." size="large">
-        <div className="content"></div>
-      </Spin>
-    );
-  }
+  useEffect(() => {
+    if (imagesSlider.current) {
+      const clientHeight = imagesSlider.current.clientHeight;
+      const scrollHeight = imagesSlider.current.scrollHeight;
+
+      if (scrollHeight <= clientHeight) {
+        arrowUp.current.style.display = "none";
+        arrowDown.current.style.display = "none";
+      }
+    }
+  }, [images]);
+
   const handleScroll = () => {
+    const scrollHeight = imagesSlider.current.scrollHeight;
+    const clientHeight = imagesSlider.current.clientHeight;
+
     // for desktop
     const scrollTop = imagesSlider.current.scrollTop;
-    const scrollBottom = imagesSlider.current.scrollHeight - scrollTop;
+    const scrollBottom = scrollHeight - scrollTop;
     // for mobile
     const scrollLeft = imagesSlider.current.scrollLeft;
     const scrollRight =
@@ -61,55 +82,56 @@ const SingleProduct = () => {
       imagesSlider.current.clientWidth -
       scrollLeft;
 
-    if (scrollTop >= 70 || scrollLeft >= 70) {
-      arrowUp.current.style.display = "block";
-    } else {
-      arrowUp.current.style.display = "none";
-    }
-    if (scrollBottom >= 680 || scrollRight >= 70) {
-      arrowDown.current.style.display = "block";
-    } else {
-      arrowDown.current.style.display = "none";
-    }
+    // console.log("scroll height :" ,scrollHeight );
+    // console.log("client  height:" ,clientHeight );
+
+    console.log(scrollTop);
+
+    arrowUp.current.style.display =
+      scrollTop >= 70 || scrollLeft >= 70 ? "block" : "none";
+    arrowDown.current.style.display =
+      scrollBottom >= 680 || scrollRight >= 70 ? "block" : "none";
   };
+
   const scrollToTop = () => {
     imagesSlider.current.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   };
+
   const scrollToBottom = () => {
     imagesSlider.current.scrollTo({
       top: 600,
       behavior: "smooth",
     });
   };
+
   const scrollToLeft = () => {
-    console.log("clicked");
     imagesSlider.current.scrollTo({
       left: 0,
       behavior: "smooth",
     });
   };
+
   const scrollToRight = () => {
-    console.log("clicked");
     imagesSlider.current.scrollTo({
       left: 540,
       behavior: "smooth",
     });
   };
- 
-  const handleViewportChange = (event) => {
-    setBreakPoint(event.matches);
-  };
-  const mediaQuery = window.matchMedia("(max-width: 992px)");
-  mediaQuery.addEventListener("change", handleViewportChange);
-
-
 
   const handelTab = (index) => {
     setBigImageIndex(index);
   };
+
+  if (singleProduct.length <= 0) {
+    return (
+      <Spin tip="Loading..." size="large">
+        <div className="content" />
+      </Spin>
+    );
+  }
 
   return (
     <div className="single-product-main-content">
@@ -135,7 +157,7 @@ const SingleProduct = () => {
                     src={"http://127.0.0.1:8000/storage/" + image}
                     alt="product"
                     onClick={() => handelTab(index)}
-                  ></img>
+                  />
                 ))}
               </div>
               <div
@@ -175,23 +197,16 @@ const SingleProduct = () => {
                 onClick={() => {
                   dispatch(addToCart(singleProduct));
                 }}
+                disabled={singleProduct[0]?.quantity <= 0 ? true : false}
               >
                 <FaCartPlus size={20} />
                 ADD TO CART
               </button>
             </div>
-
             <span className="divider" />
             <div className="info-item">
               <span className="text-bold">
-                {/* Category:{" "} */}
-                <span>
-                  {/* {
-                                        product.categories.data[0].attributes
-                                            .title
-                                    } */}
-                  title
-                </span>
+                <span>title</span>
               </span>
               <span className="text-bold">
                 Share:

@@ -8,10 +8,10 @@ import { useFormik } from "formik";
 const Shipping = ({ values, touched, errors, handleChange, handleBlur }) => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
   return (
-    <Box m="30px auto">
+    <Box>
       {/* BILLING FORM */}
       <Box>
-        <Typography sx={{ mb: "15px" }} fontSize="18px">
+        <Typography sx={{ mb: "30px" }} fontSize="18px">
           Billing Information
         </Typography>
         <Box

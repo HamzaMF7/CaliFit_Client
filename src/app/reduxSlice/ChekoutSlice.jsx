@@ -1,13 +1,13 @@
 import { createAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { baseURL } from "../../utils/api";
 
-const base_url = "http://127.0.0.1:8000/api/";
 
 export const createOrder = createAsyncThunk(
   "order/create-order",
   async (orderData, thunkAPI) => {
     try {
-      const response = await axios.post(`${base_url}order`, orderData, {
+      const response = await axios.post(`/api/${baseURL}order`, orderData, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -20,12 +20,10 @@ export const createOrder = createAsyncThunk(
 );
 
 const initialState = {
-  shipping: {},
-  information: [],
+  orderObjects: {},
   isLoading: false,
   isError: false,
   isSuccess: false,
-  order: {},
 };
 
 export const resetState = createAction("Reset_all");
@@ -33,16 +31,16 @@ export const resetState = createAction("Reset_all");
 const cartSlice = createSlice({
   name: "checkOut",
   initialState,
-  reducers: {
-    submitInfo: (state, action) => {
-      const infoPayload = action.payload;
-      state.shipping = infoPayload;
-    },
-    orderFilled: (state, action) => {
-      const orderPayload = action.payload;
-      state.order = orderPayload;
-    },
-  },
+  // reducers: {
+  //   submitInfo: (state, action) => {
+  //     const infoPayload = action.payload;
+  //     state.shipping = infoPayload;
+  //   },
+  //   orderFilled: (state, action) => {
+  //     const orderPayload = action.payload;
+  //     state.order = orderPayload;
+  //   },
+  // },
   extraReducers: (builder) => {
     builder
       .addCase(createOrder.pending, (state) => {
@@ -52,7 +50,7 @@ const cartSlice = createSlice({
         state.isLoading = false;
         state.isError = false;
         state.isSuccess = true;
-        state.information = action.payload;
+        state.orderObjects = action.payload;
       })
       .addCase(createOrder.rejected, (state, action) => {
         state.isLoading = false;
@@ -62,6 +60,6 @@ const cartSlice = createSlice({
       .addCase(resetState, () => initialState);
   },
 });
-export const { submitInfo, orderFilled } = cartSlice.actions;
+// export const { submitInfo, orderFilled } = cartSlice.actions;
 
 export default cartSlice.reducer;

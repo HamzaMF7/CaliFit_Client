@@ -1,13 +1,14 @@
 import { createAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { baseURL } from "../../utils/api";
 
-const base_url = "http://127.0.0.1:8000/api/";
+
 
 export const createCustomer = createAsyncThunk(
   "customer/create-customer",
   async (customerData, thunkAPI) => {
     try {
-      const response = await axios.post(`${base_url}customer`, customerData, {
+      const response = await axios.post(`/api/${baseURL}customer`, customerData, {
         headers: {
           "Content-Type": "application/json",
         },

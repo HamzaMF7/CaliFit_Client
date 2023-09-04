@@ -1,80 +1,102 @@
 @import "../../../css-config/variables.scss";
 .cart-products {
-    flex-grow: 1;
-    .search-result-item {
-        padding: 20px 15px;
+  flex-grow: 1;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 10px; /* Set the width of the scrollbar */
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Set the background color of the track (the area behind the thumb) */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #888; /* Set the color of the scrollbar thumb (the draggable part) */
+    border-radius: 5px; /* Add rounded corners to the thumb */
+  }
+
+  .search-result-item {
+    padding: 20px 15px;
+    display: flex;
+    gap: 20px;
+    .image-container {
+      position: relative;
+      background-color: rgba(0, 0, 0, 0.05);
+      width: 90px;
+      // height: 60px;
+      flex-shrink: 0;
+      .overLay {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100%;
+        inset: 0;
+        background-color: #ffffff75;
+        z-index: 2;
         display: flex;
-        gap: 10px;
-        .image-container {
-            background-color: rgba(0, 0, 0, 0.05);
-            width: 60px;
-            height: 60px;
-            flex-shrink: 0;
-            img {
-                width: 100%;
-                height: 100%;
-            }
-        }
-        .prod-details {
-            overflow: hidden;
-            position: relative;
-            .name {
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                overflow: hidden;
-                font-size: 16px;
-                line-height: 1;
-                margin-bottom: 10px;
-                font-weight: 600;
-                display: block;
-                padding-right: 25px;
-            }
-            .text {
-                display: flex;
-                align-items: center;
-                gap: 5px;
-                font-size: 12px;
-                font-weight: 600;
-                .highlight {
-                    color: $red;
-                }
-            }
-            svg {
-                position: absolute;
-                top: 0;
-                right: 0;
-                cursor: pointer;
-            }
-            .quantity-buttons {
-                width: fit-content;
-                display: flex;
-                border: 1px solid rgba(0, 0, 0, 0.1);
-                height: 30px;
-                margin-bottom: 8px;
-                span {
-                    font-size: 14px;
-                    width: 30px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    cursor: pointer;
-                    color: #6b6b6b;
-                    &:nth-child(1) {
-                        font-size: 18px;
-                        border-right: 1px solid rgba(0, 0, 0, 0.1);
-                    }
-                    &:nth-child(2) {
-                        width: 40px;
-                    }
-                    &:nth-child(3) {
-                        font-size: 18px;
-                        border-left: 1px solid rgba(0, 0, 0, 0.1);
-                    }
-                }
-            }
-        }
-        &:hover {
-            background-color: rgba(0, 0, 0, 0.05);
-        }
+        align-items: center;
+        justify-content: center;
+        font-size: 2em;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
+    .prod-details {
+      overflow: hidden;
+      position: relative;
+      flex: 1;
+      .name-price {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        .name {
+          font-size: 1em;
+          // line-height: 1;
+          // margin-bottom: 10px;
+          font-weight: 300;
+          text-transform: capitalize;
+          display: block;
+          padding-right: 25px;
+        }
+        .highlight {
+          color: $black;
+          font-weight: 400;
+        }
+      }
+
+      .quantity {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        .quantity-buttons {
+          width: fit-content;
+          display: flex;
+          border: 1px solid rgba(0, 0, 0, 0.1);
+          height: 30px;
+          button {
+            width: 30px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            color: #6b6b6b;
+            background-color: white;
+          }
+          .amount-item {
+            width: 40px;
+            text-align: center;
+            padding-top: 3px;
+          }
+        }
+        .close-btn {
+          font-weight: 200;
+          text-decoration: underline;
+          font-size: 0.8em;
+          cursor: pointer;
+        }
+      }
+    }
+  }
 }

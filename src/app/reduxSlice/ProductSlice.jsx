@@ -1,15 +1,16 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import {STATUS} from "../../utils/status" ;
+import { baseURL } from "../../utils/api";
 
-const url="http://127.0.0.1:8000/api/" ;
+
 
 export const getProducts = createAsyncThunk(
   "product/get-products",
   async (thunkAPI) => {
     try {
       const response = await axios.get(
-        `${url}product/`
+        `/api/${baseURL}product/`
       );
       return response.data;
     } catch (error) {

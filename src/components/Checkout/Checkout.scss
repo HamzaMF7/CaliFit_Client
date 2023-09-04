@@ -1,37 +1,247 @@
 @import "../../css-config/mixins.scss";
 @import "../../css-config/variables.scss";
 
-.table{
-    padding: 10px 20px;
-    border: 1px solid #00000024;
-    margin-bottom: 50px;
-    border-radius: 5px;
-    .row1,.row2{
+.summary {
+  background-color: #f5f5f5;
+  flex: 1;
+  padding: 10px;
+  border-radius: $radius;
+  border: 1px solid $borderColor;
+  overflow: hidden;
+  max-height: 56px; /* Adjust this value to your desired collapsed height */
+  transition: max-height 0.3s ease;
+  .summary-header {
+    display: none;
+    @media only screen and (max-width: 768px) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      height: 35px;
+      margin-bottom: 15px;
+    }
+    .title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 190px;
+      .ShoppingCartOutlined {
+        font-size: 1.3em;
+      }
+      p {
+        font-size: 0.9em;
+        font-weight: 400;
+      }
+      .arrow-icon {
+        font-size: 0.6em;
+      }
+    }
+  }
+  .items {
+    .products {
+      margin-bottom: 20px;
+      height: 315px;
+      overflow-y: scroll;
+      padding: 10px 10px 0px 0px;
+      @media only screen and (max-width: 768px) {
+        overflow-y: visible;
+        height: auto;
+      }
+
+      &::-webkit-scrollbar {
+        width: 5px; /* Set the width of the scrollbar */
+        position: relative;
+        right: -5px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: $borderColor; /* Set the color of the scrollbar thumb (the draggable part) */
+        border-radius: 5px; /* Add rounded corners to the thumb */
+      }
+      .product-details {
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        column-gap: 30px;
-        h5{
-            min-width: 60px;
-            font-weight: 300;
-            font-size: 1rem;
-            opacity: .7;
+        margin-bottom: 8px;
+        .product-name {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          .image {
+            position: relative;
+            width: 60px;
+            height: 78px;
+            background-color: white;
+            border-radius: $radius;
+            border: 1px solid $borderColor;
+            img {
+              border-radius: $radius;
+              width: 100%;
+            }
+            span {
+              position: absolute;
+              width: 17px;
+              height: 17px;
+              background-color: $gray;
+              border-radius: 50%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              top: -8px;
+              right: -8px;
+              color: white;
+              font-size: 0.6em;
+              font-weight: 500;
+            }
+          }
+          .product-name {
+            font-size: 14px;
+            text-transform: capitalize;
+          }
         }
-        span {
-            font-size: .9rem;
-    font-weight: 400;
+        .price {
+          font-size: 12px;
+          font-weight: 300;
         }
-        
+      }
     }
-    .row1 {
-        
-        padding-bottom: 10px;
-        border-bottom: 1px solid #00000024;
+    .coupon {
+      padding: 20px 0px;
+      border-top: 1px solid $borderColor;
+      border-bottom: 1px solid $borderColor;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      .discount-code {
+        padding: 15px;
+        border: 1px solid $borderColor;
+        border-radius: $radius;
+        flex: 1;
+      }
+      .apply {
+        padding: 15px;
+        border: none;
+        border-radius: $radius;
+        background: $secondGreen;
+        color: white;
+        font-weight: 500;
+        cursor: pointer;
+        transition: $transition;
+        &:hover {
+          background: $green;
+        }
+      }
+      .error,
+      .success {
+        width: 100%;
+        font-size: 0.7em;
+        color: $red;
+        font-weight: 400;
+      }
+      .success {
+        color: $green;
+      }
     }
-.row2 {
-    padding-top: 10px;
+    .subtotal,
+    .shipping,
+    .discount,
+    .total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 400;
+    }
+    .subtotal {
+      padding-top: 20px;
+      span:last-child {
+        font-weight: 500;
+      }
+    }
+    .shipping {
+      padding-bottom: 20px;
+      border-bottom: 1px solid $borderColor;
+      span:last-child {
+        font-size: 11px;
+        opacity: 0.8;
+      }
+    }
+    .total {
+      padding: 20px 0px;
+      span:last-child {
+        font-weight: 500;
+        font-size: 18px;
+      }
+    }
+  }
 }
+.expanded {
+  max-height: 1000px; /* Adjust this value to your desired expanded height */
+}
+
+.checkout .container {
+  font-family: $Inter-fontFamily;
+  margin: 50px auto;
+  .info {
+    display: flex;
+    gap: 40px;
+    @media only screen and (max-width: 768px) {
+      flex-direction: column-reverse;
+    }
+    .shipping {
+      width: 60%;
+      @media only screen and (max-width: 768px) {
+        width: 100%;
+      }
+    }
+  }
+  .form-buttons {
+    background-color: $secondGreen;
+    // width: 60%;
+    &:hover {
+      background-color: $green;
+    }
+  }
+  .css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-active {
+    color: $black;
+  }
+  //   *********************
+
+  //   *********************
+}
+
+.table {
+  padding: 10px 20px;
+  border: 1px solid #00000024;
+  margin-bottom: 50px;
+  border-radius: 5px;
+  .row1,
+  .row2 {
+    display: flex;
+    align-items: center;
+    column-gap: 30px;
+    h5 {
+      min-width: 60px;
+      font-weight: 300;
+      font-size: 1rem;
+      opacity: 0.7;
+    }
+    span {
+      font-size: 0.9rem;
+      font-weight: 400;
+    }
+  }
+  .row1 {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #00000024;
+  }
+  .row2 {
+    padding-top: 10px;
+  }
 }
 .input-error {
-    color: $red;
-    font-weight: 400;
+  color: $red;
+  font-weight: 400;
 }

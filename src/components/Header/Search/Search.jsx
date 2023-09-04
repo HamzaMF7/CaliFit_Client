@@ -55,7 +55,7 @@ const Search = ({ setSearchModal }) => {
                         >
                             <div className="image-container">
                                 <img
-                                src={"http://127.0.0.1:8000/storage/" + item.image_url}
+                                src={"http://127.0.0.1:8000/storage/" + item.image_url[0]}
                                 alt="productImage"
                                 />
                             </div>
