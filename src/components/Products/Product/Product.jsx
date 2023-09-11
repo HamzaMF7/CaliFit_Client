@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAddedProduct } from "../../../app/reduxSlice/ProductSlice";
 import { addToCart } from "../../../app/reduxSlice/CartSlice";
 import { FaCartPlus } from "react-icons/fa";
+import { baseURL } from "../../../utils/api";
 
 
 
@@ -26,7 +27,7 @@ const Product = ({ data, id }) => {
       <div className="thumbnail">
       <img
         
-          src= {"http://127.0.0.1:8000/storage/" + data.image_url[0]}
+          src= {`${baseURL}/storage/` + data.image_url[0]}
           alt="image"
           onClick={() => navigate("/product/" + id)}
         />

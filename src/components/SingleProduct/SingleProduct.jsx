@@ -19,6 +19,7 @@ import {
   getSingleProduct,
 } from "../../app/reduxSlice/ProductSlice";
 import { addToCart } from "../../app/reduxSlice/CartSlice";
+import { baseURL } from "../../utils/api";
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -154,7 +155,7 @@ const SingleProduct = () => {
                 {images?.map((image, index) => (
                   <img
                     key={index}
-                    src={"http://127.0.0.1:8000/storage/" + image}
+                    src={`${baseURL}/storage/`+ image}
                     alt="product"
                     onClick={() => handelTab(index)}
                   />
@@ -170,7 +171,7 @@ const SingleProduct = () => {
             </div>
             <div className="main-image">
               <img
-                src={"http://127.0.0.1:8000/storage/" + images[bigImageIndex]}
+                src={`${baseURL}/storage/`+ images[bigImageIndex]}
                 alt="product"
               />
             </div>

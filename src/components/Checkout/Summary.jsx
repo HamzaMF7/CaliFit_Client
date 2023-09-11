@@ -136,7 +136,7 @@ const Summary = ({totalPrice , setotalPrice}) => {
             <span>Discount</span>
             <span>{discount !== null ? discount * 100 : 0}%</span>
           </div>
-          <div className="shipping">
+          <div className="shipping-cost">
             <span>Shipping</span>
             <span>Calculated at next step</span>
           </div>

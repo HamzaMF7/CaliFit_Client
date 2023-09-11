@@ -7,7 +7,7 @@ export const createOrder = createAsyncThunk(
   "order/create-order",
   async (orderData, thunkAPI) => {
     try {
-      const response = await axios.post(`/api/${baseURL}order`, orderData, {
+      const response = await axios.post(`${baseURL}/api/order`, orderData, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -31,16 +31,6 @@ export const resetState = createAction("Reset_all");
 const cartSlice = createSlice({
   name: "checkOut",
   initialState,
-  // reducers: {
-  //   submitInfo: (state, action) => {
-  //     const infoPayload = action.payload;
-  //     state.shipping = infoPayload;
-  //   },
-  //   orderFilled: (state, action) => {
-  //     const orderPayload = action.payload;
-  //     state.order = orderPayload;
-  //   },
-  // },
   extraReducers: (builder) => {
     builder
       .addCase(createOrder.pending, (state) => {
@@ -60,6 +50,4 @@ const cartSlice = createSlice({
       .addCase(resetState, () => initialState);
   },
 });
-// export const { submitInfo, orderFilled } = cartSlice.actions;
-
 export default cartSlice.reducer;

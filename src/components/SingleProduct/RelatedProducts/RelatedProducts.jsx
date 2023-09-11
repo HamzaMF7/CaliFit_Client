@@ -1,6 +1,4 @@
 import React, { useEffect } from "react";
-// import useFetch from "../../../hooks/useFetch";
-// import Products from "../../Products/Products";
 import { useDispatch, useSelector } from "react-redux";
 import { getRelatedProducts } from "../../../app/reduxSlice/ProductSlice";
 import Product from "../../Products/Product/Product";

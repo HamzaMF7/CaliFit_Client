@@ -2,7 +2,6 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { useFormik } from "formik";
 // import AddressForm from "./AddressForm";
 
 const Shipping = ({ values, touched, errors, handleChange, handleBlur }) => {
@@ -108,37 +107,3 @@ const Shipping = ({ values, touched, errors, handleChange, handleBlur }) => {
 
 export default Shipping;
 
-// {/* SHIPPING FORM */}
-// {!values.shippingAddress.isSameAddress && (
-//   <Box>
-//     <Typography sx={{ mb: "15px" }} fontSize="18px">
-//       Shipping Information
-//     </Typography>
-//     <AddressForm
-//       type="shippingAddress"
-//       values={values.shippingAddress}
-//       touched={touched}
-//       errors={errors}
-//       handleBlur={handleBlur}
-//       handleChange={handleChange}
-//     />
-//   </Box>
-// )}
-
-//   <Box mb="20px">
-//   <FormControlLabel
-//     control={
-//       <Checkbox
-//         defaultChecked
-//         value={values.shippingAddress.isSameAddress}
-//         onChange={() =>
-//           setFieldValue(
-//             "shippingAddress.isSameAddress",
-//             !values.shippingAddress.isSameAddress
-//           )
-//         }
-//       />
-//     }
-//     label="Same for Shipping Address"
-//   />
-// </Box>

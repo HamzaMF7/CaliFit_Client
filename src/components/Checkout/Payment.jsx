@@ -1,20 +1,7 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import "./Checkout.scss"
-import { orderFilled } from "../../app/reduxSlice/ChekoutSlice";
-import { customerFilled } from "../../app/reduxSlice/CustomerSlice";
+import "./Checkout.scss";
 
-
-
-const Payment = ({shipping}) => {
-
-  // const customer = {
-  //   first_name: shipping.firstName,
-  //   last_name: shipping.lastName,
-  //   email: shipping.email,
-  //   phone_number: shipping.phoneNumber,
-  // }
-   
+const Payment = ({shipping}) => {   
 
   return <div className="table">
     <div className="row1">

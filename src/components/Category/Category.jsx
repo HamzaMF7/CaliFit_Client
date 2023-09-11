@@ -44,25 +44,3 @@ const Category = () => {
 
 export default Category;
 
-// {/* {
-//               data?.data?.[0]?.attributes?.categories?.data?.[0]
-//                   ?.attributes?.title
-//           } */}
-
-// useEffect(()=>{
-//   console.log(products);
-//     console.log(isLoading);
-//     console.log(isSuccess);
-//   },[isSuccess])
-
-// useEffect(()=>{
-//     if(isLoading == false && isSuccess== true) {
-//         dispatch(resetState());
-//       }
-//     },[isLoading , isSuccess])
-
-// if (isLoading) return(
-//   <Spin  size="large">
-//   <div className="content"></div>
-// </Spin>
-// )

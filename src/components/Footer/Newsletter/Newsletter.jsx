@@ -1,10 +1,4 @@
 import React from "react";
-import {
-  FaFacebookF,
-  FaTwitter,
-  FaInstagram,
-  FaLinkedinIn,
-} from "react-icons/fa";
 import "./Newsletter.scss";
 import img1 from "../../../images/home.png";
 import img2 from "../../../images/time.png";

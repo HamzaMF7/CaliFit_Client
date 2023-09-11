@@ -8,7 +8,7 @@ export const createCustomer = createAsyncThunk(
   "customer/create-customer",
   async (customerData, thunkAPI) => {
     try {
-      const response = await axios.post(`/api/${baseURL}customer`, customerData, {
+      const response = await axios.post(`${baseURL}/api/customer`, customerData, {
         headers: {
           "Content-Type": "application/json",
         },

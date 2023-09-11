@@ -3,7 +3,7 @@ import { MdClose } from "react-icons/md";
 import "./Search.scss";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../../app/reduxSlice/ProductSlice";
+import { baseURL } from "../../../utils/api";
 
 const Search = ({ setSearchModal }) => {
     const [query, setQuery] = useState("");
@@ -55,7 +55,7 @@ const Search = ({ setSearchModal }) => {
                         >
                             <div className="image-container">
                                 <img
-                                src={"http://127.0.0.1:8000/storage/" + item.image_url[0]}
+                                src={`${baseURL}/storage/` + item.image_url[0]}
                                 alt="productImage"
                                 />
                             </div>

@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { MdClose } from "react-icons/md";
 import "./CartItem.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { LoadingOutlined } from "@ant-design/icons";
