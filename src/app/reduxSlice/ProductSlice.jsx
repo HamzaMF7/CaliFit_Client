@@ -10,7 +10,7 @@ export const getProducts = createAsyncThunk(
   async (thunkAPI) => {
     try {
       const response = await axios.get(
-        `${baseURL}/api/product/`
+        `${baseURL}/api/product`
       );
       return response.data;
     } catch (error) {
@@ -24,7 +24,7 @@ export const getPopularProducts = createAsyncThunk(
   async (_, thunkAPI) => {
     const { products } = thunkAPI.getState().product;
     const popularProducts = products?.filter(
-      (product) => product.popular == true
+      (product) => product.popular === true
     );
     return popularProducts;
   }

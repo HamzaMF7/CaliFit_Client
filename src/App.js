@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter , Routes, Route } from "react-router-dom";
 import "./App.scss";
 
 import Header from "./components/Header/Header";
@@ -13,12 +13,12 @@ import { store } from "./app/store";
 import Checkout from "./components/Checkout/Checkout";
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Provider store={store}>
         <AppContext>
           <Header />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route index path="/" element={<Home />} />
             <Route path="/category/:id" element={<Category />} />
             <Route path="/product/:id" element={<SingleProduct />} />
             <Route path="/checkout" element={<Checkout />} />
@@ -27,7 +27,7 @@ function App() {
           <Footer />
         </AppContext>
       </Provider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

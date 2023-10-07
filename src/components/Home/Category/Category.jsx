@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import "./Category.scss";
 
-import cat1 from "../../../images/cat1.png";
-import cat2 from "../../../images/cat2.png";
-import cat3 from "../../../images/cat3.png";
-import cat4 from "../../../images/cat4.png";
+import cat1 from "../../../images/cat1.webp";
+import cat2 from "../../../images/cat2.webp";
+import cat3 from "../../../images/cat3.webp";
+import cat4 from "../../../images/cat4.webp";
 import { useContext } from "react";
 import { Context } from "../../../utils/context";
 

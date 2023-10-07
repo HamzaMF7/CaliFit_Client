@@ -9,7 +9,7 @@ const Products = ({ products, headingText, innerPage }) => {
 
   const productsContainerRef = useRef(null);
 
-  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfLastProduct = currentPage * productsPerPage; // useMemo()
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = products.slice(
     indexOfFirstProduct,
@@ -19,7 +19,7 @@ const Products = ({ products, headingText, innerPage }) => {
   // Handle page change
   const handlePageChange = (page) => {
     setCurrentPage(page);
-  };
+  }; // useCallback( () => {}, [] )
 
   useEffect(() => {
     setCurrentPage(1);

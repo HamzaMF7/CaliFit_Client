@@ -17,21 +17,7 @@ body {
 html {
     scroll-behavior: smooth;
 }
-// body::before {
-//     content: "";
-//     display: block;
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     height: 100vh;
-//     width: 100%;
-//     z-index: -1;
-//     background-color: rgba(255, 255, 255, 0);
-//     background-image: url('./components/images/back.png');
-//     background-size: cover;
-//     background-repeat: no-repeat;
-//     background-position: center center;
-//   }
+
 a {
     text-decoration: none;
 }
@@ -81,71 +67,3 @@ ul {
 
 
 
-
-
-
-// .left {
-//     position: relative;
-//     list-style-type: none;
-//     display: flex;
-//     gap: 25px;
-//   }
-//   .left > li {
-//     font-size: $D-fs;
-//     text-transform: uppercase;
-//     cursor: pointer;
-//   }
-//   .left > li:hover {
-//     opacity: 0.6;
-//   }
-  
-//   .left > li a {
-//     color: $white;
-//   }
-//   @media only screen and (max-width: 768px) {
-//     .left {
-//       gap: 15px;
-//     }
-  
-//     .left > li {
-//       font-size: $M-fs;
-//     }
-//   }
-  
-//   @media only screen and (max-width: 576px) {
-//     .left {
-//       width: 100%;
-//       justify-content: center;
-//       padding-bottom: 10px;
-//     }
-//   }
-//   .left .categories {
-//     position: absolute;
-//     background: black;
-//     width: 100%;
-//     left: 154px;
-//     padding-top: 32px;
-//     border-bottom: 3px solid var(--main-color);
-//     z-index: -1;
-//     top: 20px;
-//     transition: top 0.3s, opacity 0.3s;
-//   }
-//   .left .categories .category {
-//     display: flex;
-//     justify-content: start;
-//     align-items: center;
-//     gap: 10px;
-//     margin-bottom: 7px;
-//   }
-//   .left .categories .category img {
-//     width: 70px;
-//   }
-  
-//   .left .categories .category span {
-//     padding: 9px 0;
-//     flex: 1;
-//   }
-  
-//   .left .categories .category span:not(:last-child) {
-//     border-bottom: 1px solid #ffffff59;
-//   }

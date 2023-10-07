@@ -1,9 +1,9 @@
 import React from "react";
 import "./Newsletter.scss";
-import img1 from "../../../images/home.png";
-import img2 from "../../../images/time.png";
-import img3 from "../../../images/workour.png";
-import img4 from "../../../images/pull.png";
+import img1 from "../../../images/home.webp";
+import img2 from "../../../images/time.webp";
+import img3 from "../../../images/workour.webp";
+import img4 from "../../../images/pull.webp";
 
 const Newsletter = () => {
   return (

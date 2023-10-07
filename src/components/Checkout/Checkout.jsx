@@ -83,7 +83,7 @@ const Checkout = () => {
     setotalPrice(total);
   }, [total]);
 
-  const handleFormSubmit = async (values) => {
+  const handleFormSubmit = (values) => {
     setActiveStep(activeStep + 1);
     setOrdersDetails({
       first_name: values.firstName,
@@ -106,7 +106,7 @@ const Checkout = () => {
     });
   };
 
-  const submitOrder = async () => {
+  const submitOrder = () => {
     if (buttonRef.current.innerText === "PLACE ORDER") {
       const orderData = {
         total_price: totalPrice,
